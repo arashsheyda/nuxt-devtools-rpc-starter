@@ -3,7 +3,7 @@ import type { BirpcReturn } from 'birpc'
 import { ref } from 'vue'
 import type { NuxtDevtoolsClient } from '@nuxt/devtools-kit/dist/types'
 import type { ClientFunctions, ServerFunctions } from '../../src/types'
-import { RPC_NAMESPACE } from '../../src/constants'
+import { DEVTOOLS_RPC_NAMESPACE } from '../../src/constants'
 
 export const devtools = ref<NuxtDevtoolsClient>()
 export const devtoolsRpc = ref<NuxtDevtoolsClient['rpc']>()
@@ -13,6 +13,6 @@ onDevtoolsClientConnected(async (client) => {
   devtoolsRpc.value = client.devtools.rpc
   devtools.value = client.devtools
 
-  rpc.value = client.devtools.extendClientRpc<ServerFunctions, ClientFunctions>(RPC_NAMESPACE, {
+  rpc.value = client.devtools.extendClientRpc<ServerFunctions, ClientFunctions>(DEVTOOLS_RPC_NAMESPACE, {
   })
 })
